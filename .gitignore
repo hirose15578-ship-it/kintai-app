@@ -1,0 +1,5 @@
+node_modules/
+.env
+各種情報.txt
+docs
+load-tests/

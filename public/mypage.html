@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>マイページ</title>
+
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/mypage.js" defer></script>
+</head>
+
+<body>
+  <main>
+    <h1>マイページ</h1>
+
+    <p id="welcomeMessage"></p>
+
+    <p id="attendanceStatus" role="status">
+      勤怠状態を確認中...
+    </p>
+
+    <p>
+      出勤時刻：<span id="clockInTime">--</span>
+    </p>
+
+    <p>
+      休憩開始時刻：<span id="breakStartTime"></span>
+    </p>
+
+    <p>
+      休憩終了時刻：<span id="breakEndTime"></span>
+    </p>
+
+
+    <p>
+      退勤時刻：<span id="clockOutTime">--</span>
+    </p>
+
+    <p id="attendanceMessage" role="status"></p>
+
+    <button id="clockInButton" type="button" disabled>
+      出勤
+    </button>
+
+    <button id="breakStartButton" type="button" disabled>
+      休憩開始
+    </button>
+
+    <button id="breakEndButton" type="button" disabled>
+      休憩終了
+    </button>
+
+    <button id="clockOutButton" type="button" disabled>
+      退勤
+    </button>
+
+    <button id="logoutButton" type="button">
+      ログアウト
+    </button>
+
+    <section>
+      <h2>勤怠履歴</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>日付/</th>
+            <th>出勤/</th>
+            <th>退勤/</th>
+            <th>休憩/</th>
+            <th>合計/</th>
+            <th>実働</th>
+          </tr>
+        </thead>
+        <tbody id="attendanceHistory">
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+</body>
+</html>

@@ -1,0 +1,28 @@
+DB各種テーブル構造
+
+users:
++---------------+--------------+------+-----+-------------------+-------------------+
+| Field         | Type         | Null | Key | Default           | Extra             |
++---------------+--------------+------+-----+-------------------+-------------------+
+| id            | int unsigned | NO   | PRI | NULL              | auto_increment    |
+| username      | varchar(255) | YES  |     | NULL              |                   |
+| email         | varchar(255) | NO   | UNI | NULL              |                   |
+| created_at    | timestamp    | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| password_hash | varchar(255) | NO   |     | NULL              |                   |
+| is_admin      | tinyint(1)   | NO   |     | 0                 |                   |
++---------------+--------------+------+-----+-------------------+-------------------+
+6 rows in set (0.107 sec)
+
+attendances:
++-------------+--------------+------+-----+-------------------+-------------------+
+| Field       | Type         | Null | Key | Default           | Extra             |
++-------------+--------------+------+-----+-------------------+-------------------+
+| id          | int unsigned | NO   | PRI | NULL              | auto_increment    |
+| user_id     | int unsigned | NO   | MUL | NULL              |                   |
+| clock_in    | datetime     | NO   |     | NULL              |                   |
+| created_at  | timestamp    | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| clock_out   | datetime     | YES  |     | NULL              |                   |
+| break_start | datetime     | YES  |     | NULL              |                   |
+| break_end   | datetime     | YES  |     | NULL              |                   |
++-------------+--------------+------+-----+-------------------+-------------------+
+7 rows in set (0.019 sec)

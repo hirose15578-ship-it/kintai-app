@@ -1,0 +1,130 @@
+/* ===== 基本設定 ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  padding: 16px;
+}
+
+/* ===== カード本体 ===== */
+main {
+  width: 100%;
+  max-width: 400px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  padding: 40px 32px;
+}
+
+h1 {
+  margin: 0 0 24px;
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+}
+
+/* ===== フォーム要素 ===== */
+form div {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 16px; /* iOSでズームされんように16px以上に */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+/* ===== メッセージ ===== */
+#errorMessage {
+  color: #d93025;
+  font-size: 14px;
+  margin: -8px 0 12px;
+  min-height: 1em;
+}
+
+#successMessage {
+  color: #188038;
+  font-size: 14px;
+  margin: -8px 0 12px;
+  min-height: 1em;
+}
+
+/* ===== ボタン ===== */
+button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+button[type="submit"]:hover {
+  opacity: 0.9;
+}
+
+button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+/* ===== 会員登録リンク ===== */
+form p:last-child {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+form p:last-child a {
+  color: #667eea;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+form p:last-child a:hover {
+  text-decoration: underline;
+}
+
+/* ===== スマホ対応 ===== */
+@media (max-width: 480px) {
+  main {
+    padding: 32px 24px;
+    border-radius: 12px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+}
