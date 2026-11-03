@@ -28,6 +28,52 @@ app.use(
 app.use(express.static(path.join(__dirname, "public")));
 
 
+// 管理者だけ通すチェック
+function requireAdmin(request, response, next) {
+  if (!request.session.user) {
+    return response.status(401).json({
+      success: false,
+      message: "ログインしてください"
+    });
+  }
+
+  if (!request.session.user.is_admin) {
+    return response.status(403).json({
+      success: false,
+      message: "管理者権限が必要です"
+    });
+  }
+
+  next();
+}
+
+app.get("/api/admin/users", requireAdmin, async (request, response) => {
+  try {
+    const [rows] = await pool.execute(
+      "SELECT id, username, email, is_admin, created_at FROM users ORDER BY id"
+    
+    );
+    return response.status(200).json({
+      success: true,
+      users: rows
+    });
+  } catch(error) { console.error("ユーザー一覧取得エラー:", error);
+
+    return response.status(500).json({
+      success: false,
+      message: "ユーザー一覧を取得できませんでした"
+    });
+  }
+  
+});
+
+app.get("/api/admin/ping", requireAdmin, (request, response) => {
+  return response.status(200).json({
+    success: true,
+    message: "管理者としてアクセスできました"
+  });
+});
+
 
 // ログイン情報を受け取るAPI
 app.post("/api/login", async (request, response) => {
