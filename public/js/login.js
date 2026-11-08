@@ -75,7 +75,11 @@ loginForm.addEventListener("submit", async (event) => {
       return;
     }
 
-    window.location.href = "/mypage.html";
+    if (result.is_admin) {
+  window.location.href = "/admin.html";
+} else {
+  window.location.href = "/mypage.html";
+}
   }catch(error){
     console.error(error);
 

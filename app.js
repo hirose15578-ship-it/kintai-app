@@ -126,7 +126,8 @@ app.post("/api/login", async (request, response) => {
 
     return response.status(200).json({
       success: true,
-      message: "ログインに成功しました"
+      message: "ログインに成功しました",
+      is_admin: user.is_admin
     });
 
   } catch (error) {
@@ -653,6 +654,7 @@ app.get(
   }
 );
 
+//勤怠履歴取得？
 app.get(
   "/api/attendance/history",
   async (request, response) => {
