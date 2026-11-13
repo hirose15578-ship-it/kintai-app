@@ -319,7 +319,8 @@ async function loadAttendanceHistory(){
         attendance.break_end
       );
 
-      const actualWorkMinutes = workMinutes - breakMinutes;
+      const actualWorkMinutes = attendance.clock_out
+        ? workMinutes - breakMinutes : null;
 
 
       dateCell.textContent = formatDate(attendance.clock_in);
@@ -328,7 +329,8 @@ async function loadAttendanceHistory(){
       
       breakMinutesCell.textContent = formatMinutes(breakMinutes);
       workMinutesCell.textContent = formatMinutes(workMinutes);
-      actualWorkCell.textContent = formatMinutes(actualWorkMinutes);
+      actualWorkCell.textContent =
+      actualWorkMinutes === null ? "--" : formatMinutes(actualWorkMinutes);
       
       row.appendChild(dateCell);
       row.appendChild(clockInCell);

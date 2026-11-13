@@ -47,6 +47,7 @@ function requireAdmin(request, response, next) {
   next();
 }
 
+//ユーザー一覧取得API
 app.get("/api/admin/users", requireAdmin, async (request, response) => {
   try {
     const [rows] = await pool.execute(
@@ -65,6 +66,24 @@ app.get("/api/admin/users", requireAdmin, async (request, response) => {
     });
   }
   
+});
+
+//特定ユーザーの勤怠履歴API
+app.get("/api/admin/users/:id/attendances", requireAdmin, async (request, response) => {
+  const targetId = Number(request.params.id);
+  if(!Number.isInteger(targetId)){
+    return response.status(400).json({success: false, message: "不正はIDです"});
+  }
+  try{
+    const [rows] = await pool.execute(
+      'SELECT id, clock_in, clock_out, break_start, break_end FROM attendances WHERE user_id = ? ORDER BY clock_in DESC', [targetId]
+    );
+    return response.status(200).json({ success: true, attendances: rows});
+} catch (error) {
+  console.error ( "ユーザー勤怠履歴取得エラー:", error);
+  return response.status(500).json({success: false, message: "取得できませんでした"});
+  }
+
 });
 
 app.get("/api/admin/ping", requireAdmin, (request, response) => {
@@ -114,6 +133,8 @@ app.post("/api/login", async (request, response) => {
         message: "メールアドレスまたはパスワードが正しくありません"
       });
     }
+
+    
 
     request.session.user = {
       id: user.id,
